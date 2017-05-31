@@ -10,6 +10,8 @@ public class Grid extends Actor
     private static GreenfootImage grid;
     //12 by 8 2d array
     private static Tile[][] tiles = new Tile[12][8];
+    //Coordinates for last x and y coordinate of tile highlighted
+    private static Tile tileLast;
     public Grid(){
         grid = new GreenfootImage(960,640);
         grid.drawLine(0,560,960,560);
@@ -59,7 +61,7 @@ public class Grid extends Actor
         int numHighlighted = 0;
         for(int x=0;x<12;x++){
             for(int y=0;y<8;y++){
-                if(tiles[x][y].isHighlighted){
+                if(tiles[x][y].isHighlighted()){
                     numHighlighted ++;
                 }
             }
@@ -76,7 +78,7 @@ public class Grid extends Actor
         int checkY = tile.getMidY();
         //Make sure it's not out of bounds
         if(checkX > 0 && checkX < 960 && checkY > 0 && checkY < 640){
-            if(getTile(checkX/80,checkY/80).isHighlighted){
+            if(getTile(checkX/80,checkY/80).isHighlighted()){
                 return true;
             }
         }
@@ -85,7 +87,7 @@ public class Grid extends Actor
         checkY = tile.getMidY();
         //Make sure it's not out of bounds
         if(checkX > 0 && checkX < 960 && checkY > 0 && checkY < 640){
-            if(getTile(checkX/80,checkY/80).isHighlighted){
+            if(getTile(checkX/80,checkY/80).isHighlighted()){
                 return true;
             }
         }
@@ -94,7 +96,7 @@ public class Grid extends Actor
         checkY = tile.getMidY() + 80;
         //Make sure it's not out of bounds
         if(checkX > 0 && checkX < 960 && checkY > 0 && checkY < 640){
-            if(getTile(checkX/80,checkY/80).isHighlighted){
+            if(getTile(checkX/80,checkY/80).isHighlighted()){
                 return true;
             }
         }
@@ -103,9 +105,41 @@ public class Grid extends Actor
         checkY = tile.getMidY() - 80;
         //Make sure it's not out of bounds
         if(checkX > 0 && checkX < 960 && checkY > 0 && checkY < 640){
-            if(getTile(checkX/80,checkY/80).isHighlighted){
+            if(getTile(checkX/80,checkY/80).isHighlighted()){
                 return true;
             }
+        }
+        //If all checks fail, return false
+        return false;
+    }
+    /**
+     * Returns if the tile next to it is the one last highlighted
+     * @param tile  The tile to be checked
+     */
+    public static boolean isSideLastHighlighted(Tile tile){
+        //Check left tile
+        int checkX = tile.getMidX() - 80;
+        int checkY = tile.getMidY();
+        if(checkX == tileLast.getMidX() && checkY == tileLast.getMidY()){
+                return true;
+        }
+        //Check right tile
+        checkX = tile.getMidX() + 80;
+        checkY = tile.getMidY();
+        if(checkX == tileLast.getMidX() && checkY == tileLast.getMidY()){
+                return true;
+        }
+        //Check top tile
+        checkX = tile.getMidX();
+        checkY = tile.getMidY() + 80;
+        if(checkX == tileLast.getMidX() && checkY == tileLast.getMidY()){
+                return true;
+        }
+        //Check bottom tile
+        checkX = tile.getMidX();
+        checkY = tile.getMidY() - 80;
+        if(checkX == tileLast.getMidX() && checkY == tileLast.getMidY()){
+                return true;
         }
         //If all checks fail, return false
         return false;
@@ -134,5 +168,35 @@ public class Grid extends Actor
         }
         setImage(grid);
         getImage().setTransparency(170);
+    }
+    /**
+     * Returns an array with all the tiles that are currently highlighted
+     * @return  an array with all the tiles that are highlighted
+     */
+    public static Tile[] getHighlighted(){
+        Tile[] highlightedTiles = new Tile[getNumHighlighted()];
+        int currentIndex = 0;
+        for(int x=0;x<12;x++){
+            for(int y=0;y<8;y++){
+                if(tiles[x][y].isHighlighted()){
+                    highlightedTiles[currentIndex] = tiles[x][y];
+                    currentIndex ++;
+                }
+            }
+        }
+        return highlightedTiles;
+    }
+    /**
+     * Returns whether the current tile has an obstacle
+     */
+    public static boolean isObstacle(Tile t){
+        //placeholder
+        return false;
+    }
+    /**
+     * Sets a certain tile as the last one to be highlighted (based on its middle coordinates)
+     */
+    public static void setLastHighlighted(Tile tile){
+        tileLast = tile;
     }
 }
