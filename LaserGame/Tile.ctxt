@@ -10,4 +10,6 @@ comment3.params=
 comment3.target=int\ getMidX()
 comment4.params=
 comment4.target=int\ getMidY()
-numComments=5
+comment5.params=
+comment5.target=boolean\ isHighlighted()
+numComments=6

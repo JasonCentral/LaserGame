@@ -134,4 +134,3 @@ public abstract class Laser extends Actor
         }
     }
 }
-
