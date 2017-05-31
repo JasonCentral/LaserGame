@@ -13,7 +13,7 @@ public class Tile extends Actor
     private GreenfootImage transparent = new GreenfootImage(80,80);
     //Highlighted tile
     private GreenfootImage highlighted;
-    boolean isHighlighted = false;
+    private boolean isHighlighted = false;
     /**
      * Constructs a tile based on its bottom left corner (relative to the world)
      * @param bLx    bottom left x coordinate
@@ -41,5 +41,8 @@ public class Tile extends Actor
     }
     public int getMidY(){
         return botLeftY + 40;
+    }
+    public boolean isHighlighted(){
+        return isHighlighted;
     }
 }
