@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=h
+comment0.target=Invis(int)
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=void\ transparent()
+comment3.params=world
+comment3.target=void\ addedToWorld(greenfoot.World)
+numComments=4

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=world
+comment0.target=void\ addedToWorld(greenfoot.World)
+comment1.params=h
+comment1.target=Enemies(int)
+comment2.params=n
+comment2.target=void\ setSpeed(int)
+comment2.text=\r\n\ set\ the\ speeds\ for\ the\ enemies\r\n\ \r\n\ @param\ integer\ for\ how\ fast\r\n
+comment3.params=mob
+comment3.target=void\ movement(greenfoot.Actor)
+comment3.text=\r\n\ the\ movment\ of\ the\ enemies\r\n\ \r\n\ @param\ mob\ actor\ for\ which\ the\ moving\ is\ applied\ to\r\n
+comment4.params=x
+comment4.target=void\ atEdge(greenfoot.Actor)
+comment4.text=\r\n\ checks\ if\ the\ actor\ has\ reached\ the\ edge\ \r\n\ \r\n\ @param\ x\ actor\ to\ check\r\n
+comment5.params=d
+comment5.target=void\ damage(int)
+numComments=6
