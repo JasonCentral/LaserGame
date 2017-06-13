@@ -1,3 +1,4 @@
+
 import greenfoot.*;
 
 /**
@@ -19,6 +20,8 @@ public class ObstacleTile extends Actor
     VerticalBlocker vertical = new VerticalBlocker();
     HorizontalBlocker horizontal = new HorizontalBlocker();
     Cherries cherries = new Cherries();
+    
+    int readyToMove = 70;
     /**
      * Constructs a tile based on its bottom left corner (relative to the world)
      * @param bLx    bottom left x coordinate
@@ -28,6 +31,11 @@ public class ObstacleTile extends Actor
         botLeftX = bLX;
         botLeftY = bLY;
         setImage(transparent);
+    }
+    public void act(){
+        if(readyToMove > 0){
+            readyToMove--;
+        }
     }
     public int getMidX(){
         return botLeftX + 40;
@@ -49,6 +57,17 @@ public class ObstacleTile extends Actor
         setImage(horizontal.getImage());
     }
     public void makeD(){
-        setImage(cherries.getImage());
+        setImage(cherries.getImage());  
+    }
+    public boolean isReady(){
+        if(readyToMove == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public void resetReady(int time){
+        readyToMove = time;
     }
 }
